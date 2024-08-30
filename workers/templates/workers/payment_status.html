@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Pending</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .exclamation-mark {
+            font-family: 'Poppins', sans-serif;
+            font-size: 50px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            animation: bounceIn 1.5s ease-in-out;
+        }
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        footer {
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounceIn {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="exclamation-mark">!</div>
+        <h1>Payment Pending</h1>
+        <p>Your payment data has been submitted successfully and is currently pending.</p>
+        <p>You will be notified and receive the status of your payment via email soon. Please be patient.</p>
+        <footer>
+            &copy; 2024 CasaConnect. All rights reserved.
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Submitted Successfully</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset */
+        body, h1, p, a {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            overflow: hidden; /* To hide any overflow caused by animations */
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 450px;
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Logo Styles */
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: scaleIn 0.8s ease-out forwards 0.3s;
+        }
+
+        /* Title Styles */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.8s ease-out forwards 0.6s;
+        }
+
+        /* Information Styles */
+        .info {
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: fadeInLeft 0.8s ease-out forwards 0.9s;
+        }
+
+        .info strong {
+            display: block;
+            color: #555;
+            margin-bottom: 3px;
+        }
+
+        /* Button Styles */
+        .back-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: scaleIn 0.8s ease-out forwards 1.2s;
+        }
+
+        .back-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Footer Message */
+        .footer-message {
+            text-align: center;
+            margin-top: 15px;
+            color: #777;
+            font-size: 13px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards 1.5s;
+        }
+
+        /* CSS Animations */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Company Logo -->
+        <img src="https://thumbnails.genial.ly/601f97d112453d6b84658696/pdf/65c981f8-2305-4e0c-98f2-b492c7f88921.png" alt="Company Logo" class="logo">
+
+        <!-- Success Message -->
+        <h1>Complaint Submitted Successfully</h1>
+
+        <!-- Displaying Complaint and Order Info -->
+        <div class="info">
+            <strong>Complaint ID:</strong> {{ complaint.id }}
+            <strong>Order ID:</strong> {{ complaint.work.id }}
+            <strong>Worker:</strong> {{ complaint.work.work }}
+            <strong>Address:</strong> {{ complaint.work.address }}
+            <strong>Nearest Location:</strong> {{ complaint.work.nearest_location }}
+            <strong>Payment Method:</strong> {{ complaint.work.payment }}
+            <strong>Status:</strong> {{ complaint.work.status }}
+            <strong>Complaint:</strong> {{ complaint.complaint }}
+            <strong>Date Submitted:</strong> {{ complaint.date }}
+        </div>
+
+        <!-- Back Button -->
+        <a href="{% url 'track_order' %}" class="back-button">Back to Orders</a>
+    </div>
+
+    <!-- Your Kind Words -->
+    <p class="footer-message">
+        Thank you for sharing your concerns with us. Your satisfaction is our priority, and we will address your complaint promptly.
+    </p>
+
+</body>
+</html>

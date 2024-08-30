@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CasaConnect Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f4f4f4;
+            color: #333;
+            line-height: 1.4;
+            font-size: 12px;
+            text-align: center; /* Center all text */
+        }
+        header {
+            width: 100%;
+            padding: 8px 0;
+            background: #2c3e50;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .logo {
+            font-size: 18px;
+            font-weight: 500;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            animation: slideDown 1.5s ease-in-out;
+        }
+        .container {
+            max-width: 700px;
+            margin: 15px auto;
+            padding: 10px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+        h1, h2 {
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        h1 {
+            font-size: 22px;
+        }
+        h2 {
+            font-size: 14px;
+            color: #1db954;
+        }
+        p {
+            font-size: 11px;
+            margin-bottom: 15px;
+        }
+        .premium-btn {
+            display: block;
+            width: 60%;
+            margin: 10px auto;
+            background: #1db954;
+            color: #fff;
+            padding: 8px 0;
+            font-size: 11px;
+            font-weight: 500;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        .premium-btn:hover {
+            background: #17a548;
+        }
+        .features, .images, .payment-methods, .offer-section {
+            margin: 20px auto;
+            padding: 10px;
+            max-width: 90%; /* Ensures the content is centered and fits well */
+            animation: fadeIn 2s ease-in-out;
+            text-align: center; /* Center the text inside each section */
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjusted for compact layout */
+            gap: 10px;
+            justify-content: center; /* Center grid items */
+        }
+        .feature {
+            background: #f9f9f9;
+            padding: 8px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        .feature img {
+            max-width: 90%;
+            height: auto;
+            margin-bottom: 8px;
+            border-radius: 8px;
+        }
+        .images img {
+            max-width: 45%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            animation: slideInRight 1.5s ease-in-out;
+        }
+        .payment-methods img {
+            margin: 5px;
+            width: 45px;
+            height: auto;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        .payment-methods img:hover {
+            opacity: 1;
+        }
+        .offer-section {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .offer-section h2 {
+            font-size: 18px;
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+        .offer-section img {
+            max-width: 45%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            animation: slideInLeft 1.5s ease-in-out;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">CasaConnect</div>
+    </header>
+
+    <div class="container">
+        <h1>Upgrade to CasaConnect Premium</h1>
+        <p>Experience faster deliveries, exclusive deals, and priority support with our premium plan. Join a community of happy users today.</p>
+        <a href="{% url 'payment_page' %}" class="premium-btn">Upgrade to Premium</a>
+    </div>
+
+    <div class="container features">
+        <h2>Premium Benefits</h2>
+        <div class="feature">
+            <img src="https://img.freepik.com/premium-vector/scooter-fast-delivery-logo-design-courier-logo-design-template_22857-162.jpg?w=360" alt="Fast Delivery">
+            <h3>Fast Delivery</h3>
+            <p>Get your orders delivered faster with our premium plan.</p>
+        </div>
+        <div class="feature">
+            <img src="https://static.vecteezy.com/system/resources/previews/013/021/673/non_2x/exclusive-deal-banner-design-template-business-concept-flat-illustration-vector.jpg" alt="Exclusive Offers">
+            <h3>Exclusive Offers</h3>
+            <p>Access special deals and discounts only available to premium members.</p>
+        </div>
+        <div class="feature">
+            <img src="https://thumbs.dreamstime.com/b/priority-stamp-illustration-priority-stamp-seal-illustration-design-106196509.jpg" alt="Priority Support">
+            <h3>Priority Support</h3>
+            <p>Enjoy dedicated customer support with shorter wait times.</p>
+        </div>
+    </div>
+
+    <div class="container offer-section">
+        <h2>Special Offer: Only $45/Month</h2>
+        <img src="https://img.freepik.com/premium-vector/number-45-logo-icon-design-45th-birthday-logo-number-anniversary-45_640430-727.jpg" alt="Special Offer">
+        <p>Don't miss out on this limited-time offer! Upgrade now and enjoy all the premium benefits for just $45 per month.</p>
+        <a href="{% url 'payment_page' %}" class="premium-btn">Get This Offer</a>
+        <a href="{% url 'about_premium' %}" class="premium-btn">How it works?</a>
+    </div>
+
+    <div class="container payment-methods">
+        <h2>Supported Payment Methods</h2>
+        <img src="https://th.bing.com/th/id/OIP._h6ea6vMi06k8UAjnDoVFQAAAA?rs=1&pid=ImgDetMain" alt="PhonePe">
+        <img src="https://th.bing.com/th/id/OIP.CgoBKS6eVjOpta-VX0FitAHaHa?rs=1&pid=ImgDetMain" alt="Google Pay">
+        <img src="https://1000logos.net/wp-content/uploads/2021/03/Paytm_Logo.png" alt="Paytm">
+        <img src="https://th.bing.com/th/id/OIP.jxWPkcLv7VTR9S7SiruB8QHaEK?rs=1&pid=ImgDetMain" alt="UPI">
+    </div>
+
+    <footer>
+        2024 CasaConnect. All Rights Reserved.
+    </footer>
+</body>
+</html>

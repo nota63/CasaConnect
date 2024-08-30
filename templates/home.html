@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - CasaConnect</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Header Styles */
+        header {
+            width: 100%;
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        nav {
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        /* Main Content Styles */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+            flex-grow: 1;
+            margin-top: 100px; /* to avoid overlap with fixed header */
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        section {
+            margin-bottom: 15px;
+            width: 100%;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        p {
+            font-size: 0.9em;
+            margin: 5px 0;
+            color: #34495e;
+        }
+
+        strong {
+            color: #27ae60;
+            font-size: 1em;
+        }
+
+        h3 {
+            font-size: 1em;
+            color: #e74c3c;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Button Grid Styles */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two buttons per row */
+            gap: 10px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            padding: 7px;
+            font-size: 0.9em;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #3498db;
+        }
+
+        .login-data {
+            background-color: #ecf0f1;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .login-data p {
+            margin: 3px 0;
+            font-size: 0.8em;
+            color: #7f8c8d;
+        }
+
+        /* Footer Styles */
+        footer {
+            width: 100%;
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 0.8em;
+        }
+
+        .footer-links {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #f39c12;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+       .social-media-icons img {
+    width: 25px;
+    margin: 0 5px;
+    transition: transform 0.3s ease;
+    border-radius: 50%; /* Makes the corners rounded */
+}
+
+.social-media-icons img:hover {
+    transform: scale(1.1);
+}
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">CasaConnect</div>
+        <nav>
+            <a href="#">Home</a>
+<!--            <a href="#">Products</a>-->
+            <a href="{% url 'about_us'%}">About Us</a>
+            <a href="{% url 'contact'%}">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h1>CasaConnect</h1>
+        <p>Get your work done at your fingertips</p>
+
+        <section>
+            {% if messages %}
+                {% for m in messages %}
+                    <p>{{m}}</p>
+                {% endfor %}
+            {% endif %}
+        </section>
+
+        <section>
+            {% if user.is_authenticated %}
+                <strong>Welcome Back, {{ request.user }}! Have a great day!</strong>
+                <a href="{% url 'logout' %}">
+                    <button type="submit">Logout</button>
+                </a>
+            {% else %}
+                <h3>{{ request.user }}, please log in to get started!</h3>
+                <a href="{% url 'signup' %}">
+                    <button type="submit">Sign Up</button>
+                </a>
+                or
+                <a href="{% url 'login' %}">
+                    <button type="submit">Log In</button>
+                </a>
+            {% endif %}
+        </section>
+
+        {% if login_data %}
+            <div class="login-data">
+                <strong>Django Signals</strong>
+                <p><strong>Sender:</strong> {{ login_data.sender }}</p>
+                <p><strong>User:</strong> {{ login_data.user }}</p>
+                <p><strong>Kwargs:</strong> {{ login_data.kwargs }}</p>
+                <p><strong>Password:</strong> {{ login_data.password }}</p>
+                <p><strong>Request:</strong> {{ login_data.request }}</p>
+            </div>
+        {% endif %}
+
+        <h2>Your journey begins from here</h2>
+
+        <div class="button-grid">
+            <a href="{% url 'workers'%}">
+                <button type="submit">Schedule work</button>
+            </a>
+
+            <a href="{% url 'track_order'%}">
+                <button type="submit">Track order</button>
+            </a>
+
+            <a href="{% url 'premium'%}">
+                <button type="submit">Premium</button>
+            </a>
+
+            <a href="{% url 'join_worker'%}">
+                <button type="submit">Join as worker</button>
+            </a>
+
+             <a href="{% url 'discounts'%}">
+                <button type="submit">Discounts</button>
+            </a>
+
+            <a href="{% url 'homepage'%}">
+                <button type="submit">Build own home!</button>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="{% url 'privacy' %}">Privacy Policy</a> |
+            <a href="{% url 'terms'%}">Terms of Service</a> |
+            <a href="{% url 'help_view'%}">Help</a>
+        </div>
+        <p>&copy; 2024 CasaConnect. All rights reserved.</p>
+        <div class="social-media-icons">
+            <a href="https://github.com"><img src="https://th.bing.com/th/id/OIP.lJEV8azOsH7rRQJ6gmvt9gHaHa?rs=1&pid=ImgDetMain" alt="GitHub"></a>
+            <a href="https://instagram.com"><img src="https://th.bing.com/th/id/OIP.k8r686S4rXBWimbkwqOr2gHaHa?rs=1&pid=ImgDetMain" alt="Instagram"></a>
+            <a href="https://facebook.com"><img src="https://th.bing.com/th/id/OIP.g-PMKXEGdnEU8sBg9_X8uwHaHa?rs=1&pid=ImgDetMain" alt="Facebook"></a>
+        </div>
+    </footer>
+
+</body>
+</html>

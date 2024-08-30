@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Lato:wght@300;400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 20px;
+            font-size: 1.5em;
+            animation: fadeIn 1s ease-out;
+        }
+
+        p {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1em;
+            margin: 0 20px 20px;
+            animation: fadeIn 1s ease-out 0.5s;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            animation: slideUp 1s ease-out;
+        }
+
+        .project-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        img.project-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        img.project-image:hover {
+            transform: scale(1.1);
+        }
+
+        .project-details {
+            flex: 1;
+        }
+
+        strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #34495e;
+        }
+
+        .status {
+            color: #2ecc71; /* Green color for status */
+        }
+
+        a {
+            display: inline-block;
+            margin: 5px;
+            padding: 7px 16px;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #3498db;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        a:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .button-home {
+            background-color: #2ecc71;
+        }
+
+        .button-home:hover {
+            background-color: #27ae60;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Your Requested Projects</h1>
+    <p>Check the status of your projects and receive notifications when they are approved!</p>
+
+    <section>
+        {% for a in data %}
+            <div class="project-item">
+                <img src="{{ a.sample_design.url }}" alt="Sample Design" class="project-image">
+                <div class="project-details">
+                    <strong>Project Name: {{ a.project_name }}</strong>
+                    <strong class="status">Status: {{ a.status }}</strong>
+                    <a href="{% url 'project_detail' a.id %}" class="view-details">View Details</a>
+                </div>
+            </div>
+        {% endfor %}
+
+        <a href="{% url 'homepage' %}" class="button-home">Home</a>
+    </section>
+
+</body>
+</html>

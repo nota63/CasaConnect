@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Instructions</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out;
+        }
+        .header img {
+            height: 40px;
+            vertical-align: middle;
+        }
+        .container {
+            padding: 15px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .section {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-out;
+        }
+        .section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .section p, .section ul {
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+        .warning {
+            background-color: #fdd;
+            border-left: 5px solid #d9534f;
+        }
+        .instructions {
+            background-color: #e7f0ff;
+            border-left: 5px solid #0275d8;
+        }
+        .payscale {
+            background-color: #fff4e6;
+            border-left: 5px solid #f0ad4e;
+        }
+        .logos img {
+            height: 25px;
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+        .logos img:hover {
+            transform: scale(1.1);
+        }
+        .get-started {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .get-started button {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .get-started button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .get-started a {
+            text-decoration: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="https://th.bing.com/th/id/OIP.kryWQ3i3FVjyJOUd0wxIxQHaHa?rs=1&pid=ImgDetMain" alt="Company Logo">
+    </div>
+
+    <div class="container">
+        <div class="section instructions">
+            <h2>Important Instructions for Clients</h2>
+            <p>Welcome to our home building project! Please review the following instructions carefully:</p>
+            <ul>
+                <li>Ensure you have provided accurate information about your project.</li>
+                <li>Review the design preferences and make any necessary adjustments before finalizing.</li>
+                <li>Be aware of the budget constraints and adjust the scope of work accordingly.</li>
+                <li>Check the timeline and communicate any changes or concerns promptly.</li>
+            </ul>
+        </div>
+
+        <div class="section warning">
+            <h2>Warnings</h2>
+            <p>Please note the following warnings:</p>
+            <ul>
+                <li>Failure to provide accurate information may result in project delays.</li>
+                <li>Unexpected changes to the project scope may affect the overall budget.</li>
+                <li>Ensure all permits and regulations are adhered to, or the project might face legal issues.</li>
+            </ul>
+        </div>
+
+        <div class="section payscale">
+            <h2>Pay Scales</h2>
+            <p>The following pay scales apply to different aspects of the project:</p>
+            <ul>
+                <li>Project Management: $60/hour</li>
+                <li>Construction Labor: $40/hour</li>
+                <li>Design Services: $80/hour</li>
+                <li>Consultation Fees: $100/hour</li>
+            </ul>
+        </div>
+
+        <div class="section logos">
+            <h2>Our Partners</h2>
+            <img src="https://th.bing.com/th/id/OIP.xiHyuZk71__2r8mDXZODNgHaCI?rs=1&pid=ImgDetMain" alt="Partner Logo 1">
+<!--            <img src="partner-logo2.png" alt="Partner Logo 2">-->
+<!--            <img src="partner-logo3.png" alt="Partner Logo 3">-->
+        </div>
+
+        <div class="get-started">
+            <a href="{% url 'start_build'%}">
+                <button type="button">Get Started</button>
+            </a>
+            <a href="{% url 'view_build'%}">
+                <button type="button">Inventory</button>
+            </a>
+
+             <a href="{% url 'vehicle_info'%}">
+                <button type="button">vehicle info</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

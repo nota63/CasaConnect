@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completed Orders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Mulish', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background-color: #343a40;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        header h1 {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.4em;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-card {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background-color: #fafafa;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .order-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-card strong {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .order-card .status {
+            color: #28a745; /* Green color for status */
+        }
+
+        .order-card .order-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .order-card .order-details strong {
+            width: 45%;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        @media (min-width: 768px) {
+            .order-card .order-details strong {
+                width: 28%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://thumbnails.genial.ly/601f97d112453d6b84658696/pdf/65c981f8-2305-4e0c-98f2-b492c7f88921.png" alt="Company Logo" class="logo">
+    <h1 class="header-title">Your Completed Orders</h1>
+</header>
+
+<main class="content">
+    {% for a in data %}
+    <div class="order-card">
+        <div class="order-details">
+            <strong>Work: {{a.work}}</strong>
+            <strong>Address: {{a.address}}</strong>
+            <strong>Nearest Location: {{a.nearest_location}}</strong>
+            <strong>Payment Method: {{a.payment_method}}</strong>
+            <strong class="status">Status: {{a.status}}</strong> <!-- Status in green color -->
+            <strong>Date Scheduled: {{a.date_scheduled}}</strong>
+            <strong><a href="{% url 'complaint' a.id%}"><button type="submit">Complaint!</button></a></strong>
+             <strong><a href="{% url 'feed' a.id%}"><button type="submit">Feedback</button></a></strong>
+        </div>
+    </div>
+    {% endfor %}
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+<script>
+    gsap.from(".logo", { duration: 1.5, opacity: 0, y: -50, ease: "bounce" });
+    gsap.from(".header-title", { duration: 1.5, opacity: 0, y: -50, delay: 0.3, ease: "bounce" });
+    gsap.from(".order-card", {
+        duration: 1,
+        opacity: 0,
+        y: 20,
+        stagger: 0.2,
+        ease: "power2.out"
+    });
+</script>
+
+</body>
+</html>

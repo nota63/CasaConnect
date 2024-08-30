@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success - CasaConnect</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #2c3e50;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            text-align: center;
+            font-size: 0.9rem;
+            display: none;
+            opacity: 0;
+        }
+        h1 {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+            color: #34495e;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        .success-icon {
+            font-size: 4rem;
+            color: #27ae60;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        p {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #1abc9c;
+            font-weight: 400;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Spinner -->
+    <div class="spinner" id="spinner"></div>
+
+    <!-- Success Container -->
+    <div class="container" id="success-container">
+        <div class="success-icon">✔</div>
+        <h1>Success!</h1>
+        <p>We have successfully received your query and will contact you shortly.</p>
+        <a href="{% url 'home' %}">Back to Home</a>
+    </div>
+
+    <!-- GSAP & JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script>
+        // Display spinner for 3 seconds
+        setTimeout(function() {
+            document.getElementById("spinner").style.display = "none";
+            document.getElementById("success-container").style.display = "block";
+            gsap.to("#success-container", {
+                opacity: 1,
+                duration: 0.5
+            });
+            gsap.to(".success-icon", {
+                scale: 1,
+                opacity: 1,
+                duration: 0.5,
+                ease: "back.out(1.7)"
+            });
+        }, 3000);
+    </script>
+
+</body>
+</html>

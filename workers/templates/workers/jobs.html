@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Jobs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #1db954;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+        .job-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        .job-image {
+            max-width: 150px;
+            margin-right: 20px;
+            border-radius: 8px;
+        }
+        .job-content {
+            flex: 1;
+        }
+        .job-title {
+            font-size: 18px;
+            color: #1db954;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+        .job-package {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .job-requirements, .job-description, .job-date {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        .job-requirements {
+            font-weight: bold;
+            color: #333;
+        }
+        /* Animations */
+        @keyframes fadeInDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Available Job Opportunities</h1>
+
+        {% for job in data %}
+        <div class="job-card">
+            <img src="{{ job.image.url }}" alt="{{ job.title }}" class="job-image">
+            <div class="job-content">
+                <h2 class="job-title">{{ job.title }}</h2>
+                <p class="job-package"><strong>Package:</strong> {{ job.package }}</p>
+                <p class="job-requirements"><strong>Requirements:</strong> {{ job.requirements }}</p>
+                <p class="job-description"><strong>Description:</strong> {{ job.description }}</p>
+                <p class="job-date"><strong>Date Posted:</strong> {{ job.date_posted|date:"F j, Y, g:i a" }}</p>
+                <p class="job-title"><strong><a href="{% url 'apply_job' job.id%}">Apply</a></strong></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

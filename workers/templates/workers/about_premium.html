@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        section {
+            max-width: 800px;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        h1 {
+            color: #1db954;
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+            animation: slideIn 1s ease-in-out;
+        }
+        h3 {
+            color: #333;
+            font-size: 14px;
+            margin-top: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        p {
+            font-size: 10px;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .step {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+        .step img {
+            max-width: 40%;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+        .step h4 {
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #1db954;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .step p {
+            font-size: 10px;
+            margin: 0;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>How Premium Works?</h1>
+        <p>To enjoy the benefits of our premium subscription, follow these simple steps:</p>
+
+        <div class="steps">
+            <div class="step">
+                <img src="https://th.bing.com/th/id/OIP.fkppTNYemO_4ATdbswpJRwHaHa?rs=1&pid=ImgDetMain" alt="Step 1">
+                <h4>Purchase Premium</h4>
+                <p>Select your premium plan and complete the payment through our secure portal.</p>
+            </div>
+            <div class="step">
+                <img src="https://th.bing.com/th/id/OIP.8JBOmm-AZGNvz1Rt-FJBZQHaHa?rs=1&pid=ImgDetMain" alt="Step 2">
+                <h4>Submit Payment Data</h4>
+                <p>Enter your payment details on our portal. We will process and verify your information.</p>
+            </div>
+            <div class="step">
+                <img src="https://th.bing.com/th/id/OIP.aS6sJHLvPq2yUmvrHUM55gHaHa?w=1920&h=1920&rs=1&pid=ImgDetMain" alt="Step 3">
+                <h4>Receive Premium Card</h4>
+                <p>After verification, you will receive a premium user card via email that grants access to exclusive features.</p>
+            </div>
+            <div class="step">
+                <img src="https://th.bing.com/th/id/OIP.BDiaulS33zX4Zl29SzJKLAHaHa?rs=1&pid=ImgDetMain" alt="Step 4">
+                <h4>Utilize Premium Benefits</h4>
+                <p>Upload your premium card when scheduling work to apply discounts and enjoy premium services.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

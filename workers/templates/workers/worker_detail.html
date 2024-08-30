@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ worker.name }} - Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Color Variables */
+            --background-color: #f5f7f9; /* Light grey background */
+            --container-bg-color: #ffffff; /* White background for content */
+            --text-color: #2c3e50; /* Dark grey for text */
+            --highlight-color: #3498db; /* Primary blue for accents */
+            --border-color: #e0e0e0; /* Light border color */
+            --box-shadow: rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+            --discount-color: #27ae60; /* Green for discount */
+            --discount-bg-color: #eafaf1; /* Light green background */
+            --font-family: 'Roboto', sans-serif;
+            --font-size: 14px;
+            --padding: 12px;
+            --border-radius: 8px;
+            --animation-duration: 2s;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .detail-container {
+            background-color: var(--container-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 8px var(--box-shadow);
+            padding: 20px;
+            max-width: 500px; /* Reduced max-width for a more compact layout */
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+            border: 1px solid var(--border-color);
+        }
+
+        .detail-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid var(--highlight-color);
+        }
+
+        .detail-container h1 {
+            font-size: 1.8rem; /* Slightly reduced font size */
+            color: var(--text-color);
+            margin-bottom: 10px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .detail-container p {
+            font-size: 0.9rem; /* Slightly smaller font size */
+            color: #34495e; /* Darker grey for better contrast */
+            margin: 6px 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 0.9rem; /* Slightly smaller font size */
+            color: var(--highlight-color);
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #2980b9;
+            text-decoration: underline;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Discount Line Styling */
+        .discount-line {
+            font-family: var(--font-family);
+            background-color: var(--discount-bg-color);
+            color: var(--discount-color);
+            border-radius: var(--border-radius);
+            padding: var(--padding);
+            box-shadow: 0px 2px 6px var(--box-shadow);
+            font-weight: 500; /* Semi-bold text for emphasis */
+            text-align: center;
+            display: inline-block;
+            font-size: 0.9rem; /* Slightly smaller font size */
+            position: relative;
+            overflow: hidden;
+            animation: pulseAnimation var(--animation-duration) ease-in-out infinite;
+        }
+
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(1);
+                box-shadow: 0px 2px 6px var(--box-shadow);
+            }
+            50% {
+                transform: scale(1.03);
+                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0px 2px 6px var(--box-shadow);
+            }
+        }
+
+        .discount-line::before {
+            content: "✔ ";
+            font-size: 1.2em;
+            color: var(--discount-color);
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .detail-container {
+                padding: 15px;
+            }
+
+            .detail-container img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .detail-container h1 {
+                font-size: 1.5rem;
+            }
+
+            .detail-container p {
+                font-size: 0.85rem;
+            }
+
+            .back-link {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="detail-container">
+        <p>Note: Charges of the work will depend on your work type, duration, and complexity of your work!</p>
+        <img src="{{ worker.profile_pic.url }}" alt="{{ worker.name }}">
+        <h1>{{ worker.name }}</h1>
+        <strong class="discount-line">Discount: {{ worker.discount }}</strong>
+        <p><strong>Role:</strong> {{ worker.role.role }}</p>
+        <p><strong>Price:</strong> {{ worker.price }}</p>
+        <p><strong>Member Since:</strong> {{ worker.member_since|date:"F j, Y" }}</p>
+        <p><strong>Age:</strong> {{ worker.age }}</p>
+        <a href="{% url 'workers' %}" class="back-link">Back to Workers List</a>
+        <br>
+        <a href="{% url 'purchase' worker.id %}" class="back-link">Schedule Work</a>
+    </div>
+</body>
+</html>
+

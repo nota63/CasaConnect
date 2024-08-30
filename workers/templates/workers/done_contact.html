@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #27ae60;
+            --secondary-color: #1abc9c;
+            --background-color: #f9f9f9;
+            --text-color: #2c3e50;
+            --font-family: 'Poppins', sans-serif;
+            --dark-background: #34495e;
+            --light-background: #ecf0f1;
+            --accent-color: #2980b9;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .progress-container,
+        .success-container {
+            text-align: center;
+            background: var(--light-background);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #d3d3d3;
+            border-radius: 50px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .progress-bar-fill {
+            height: 15px;
+            width: 0;
+            background: linear-gradient(145deg, var(--primary-color), var(--accent-color));
+            transition: width 0.1s ease-in-out;
+            border-radius: 50px;
+        }
+
+        .progress-text {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .success-container {
+            display: none;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .checkmark {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            animation: bounce 1.2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        p {
+            margin-top: 8px;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 18px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <h1>Working on it...</h1>
+        <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+        </div>
+        <div class="progress-text">0%</div>
+    </div>
+
+    <div class="success-container">
+        <div class="checkmark">✔</div>
+        <h1>Success!</h1>
+        <p>Your form has been successfully submitted.</p>
+        <a href="{% url 'home' %}">Go to Homepage</a>
+    </div>
+
+    <script>
+        let progressBarFill = document.querySelector('.progress-bar-fill');
+        let progressText = document.querySelector('.progress-text');
+        let progressContainer = document.querySelector('.progress-container');
+        let successContainer = document.querySelector('.success-container');
+
+        let progress = 0;
+        let interval = setInterval(() => {
+            progress += 1;
+            progressBarFill.style.width = progress + '%';
+            progressText.textContent = progress + '%';
+
+            if (progress >= 100) {
+                clearInterval(interval);
+                progressContainer.style.display = 'none';
+                successContainer.style.display = 'block';
+            }
+        }, 30);
+    </script>
+
+</body>
+</html>

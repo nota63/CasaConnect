@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discounts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --card-background: #fff;
+            --card-shadow: rgba(0, 0, 0, 0.1);
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .discounts-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .discount-card {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px var(--card-shadow);
+            overflow: hidden;
+            width: 300px;
+            padding: 20px;
+            margin: 0;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .discount-card:hover {
+            box-shadow: 0px 8px 16px var(--card-shadow);
+        }
+
+        .discount-card h2 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .discount-card p {
+            font-size: 14px;
+            color: var(--text-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .discount-card a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .discount-card a:hover {
+            text-decoration: underline;
+        }
+
+        .date-posted {
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Discounts</h1>
+
+    <div class="discounts-container">
+        {% for discount in discount %}
+            <div class="discount-card">
+                <h2>{{ discount.role }}</h2>
+                <p>{{ discount.content | safe }}</p>
+                <a href="{% url  'workers' %}" target="_blank">Avail now</a>
+                <div class="date-posted">Posted on: {{ discount.date_posted|date:"F j, Y, g:i a" }}</div>
+                <div class="date-posted">Valid upto : {{discount.valid}}</div>
+            </div>
+        {% empty %}
+            <p>No discounts available at the moment.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            font-size: 14px;
+            margin-bottom: 10px;
+            animation: slideInFromLeft 0.8s ease-out;
+        }
+
+        section {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        strong {
+            display: block;
+            margin: 8px 0;
+            font-size: 12px;
+        }
+
+        p {
+            font-size: 11px;
+            color: #7f8c8d;
+            margin-top: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        form button {
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            padding: 7px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        form button:hover {
+            background-color: #3498db;
+        }
+
+        a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        a:hover {
+            transform: scale(1.05);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInFromLeft {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); }
+            to { transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Hey there, {{ request.user }}</h1>
+
+    <section>
+        <h1>Contact Us</h1>
+        <div class="contact-info">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Mail_%28iOS%29.svg/1024px-Mail_%28iOS%29.svg.png" alt="Email" class="icon">
+            <strong>Email: example@gmail.com</strong>
+        </div>
+        <div class="contact-info">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="icon">
+            <strong>WhatsApp: 9022216598</strong>
+        </div>
+        <p>Please ensure you are contacting for valid reasons only!</p>
+    </section>
+
+    <h2>Or kindly fill the form and our team will contact you</h2>
+
+    <section>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <section>
+        <a href="{% url 'home' %}"><strong>Back</strong></a>
+        <a href="{% url 'track_order' %}"><strong>Orders</strong></a>
+    </section>
+
+</body>
+</html>

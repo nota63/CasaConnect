@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Project Form</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Hide default scrollbars during animation */
+        }
+        .container {
+            max-width: 400px;
+            height: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Enable vertical scrolling */
+            position: relative; /* For scrollbar styling */
+            opacity: 0; /* Start hidden */
+            transform: scale(0.95); /* Start slightly scaled down */
+            animation: fadeInUp 1s ease-out forwards; /* Apply animation */
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .instructions {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #e9f5ff;
+            border-left: 5px solid #007bff;
+            border-radius: 4px;
+        }
+        .instructions h2 {
+            margin-top: 0;
+            color: #007bff;
+            font-size: 18px;
+        }
+        .instructions p {
+            margin: 0;
+            color: #555;
+            font-size: 14px;
+        }
+        .instructions a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .instructions a:hover {
+            text-decoration: underline;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.5s forwards; /* Delayed animation for form elements */
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 14px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .form-actions {
+            text-align: center;
+            animation: fadeInUp 1s ease-out 1s forwards; /* Delayed animation for form actions */
+        }
+        .form-actions button {
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-actions button:hover {
+            background-color: #0056b3;
+        }
+        .form-actions button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+        }
+        /* Custom scrollbar styles */
+        .container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .container::-webkit-scrollbar-track {
+            background: #f4f4f4;
+        }
+        .container::-webkit-scrollbar-thumb {
+            background: #007bff;
+            border-radius: 4px;
+        }
+        .container::-webkit-scrollbar-thumb:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<section>
+    {% if messages %}
+      {% for m in messages %}
+        <p>{{ m }}</p>
+      {% endfor %}
+    {% endif %}
+</section>
+
+<div class="container" id="formContainer">
+    <h1>Home Project Form</h1>
+    <div class="instructions">
+        <h2>Important Instructions</h2>
+        <p>Please fill out the form below with accurate details about your home project. Make sure to provide all necessary information to help us process your request efficiently.</p>
+        <p>If you have any questions or need assistance, feel free to contact our support team.</p>
+        <p><strong>Warning:</strong> Ensure that all data entered is correct. Inaccurate information may lead to delays or issues with your project.</p>
+        <p>Refer to our <a href="#">FAQ</a> page for more information.</p>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

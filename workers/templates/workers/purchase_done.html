@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Confirmation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #eaf4e8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            animation: fadeIn 1s ease-out;
+        }
+        p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: slideIn 0.8s ease-out;
+        }
+        .details {
+            margin: 10px 0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .details strong {
+            display: block;
+            margin: 5px 0;
+        }
+        button {
+            background-color: #3498db;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+        .checkmark {
+            font-size: 4rem;
+            color: #27ae60;
+            margin-bottom: 20px;
+            animation: checkmark 1s ease-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes checkmark {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="checkmark">✔</div>
+    <h1>Success! Your Work Has Been Scheduled</h1>
+    <p>Thank you for scheduling with us. Here’s a summary of your request:</p>
+
+    <section>
+        <div class="details">
+            <strong>Worker's Profile Picture:</strong>
+            <img src="{{ purchase.profile_pic.url }}" alt="Worker's Profile" style="width: 120px; height: 120px; border-radius: 50%;">
+        </div>
+        <div class="details">
+            <strong>Role:</strong> {{ purchase.role }}
+        </div>
+        <div class="details">
+            <strong>Price:</strong> {{ purchase.price }}
+        </div>
+        <div class="details">
+            <strong>Age:</strong> {{ purchase.age }}
+        </div>
+        <div class="details">
+            <strong>Member Since:</strong> {{ purchase.member_since }}
+        </div>
+    </section>
+
+    <div style="margin-top: 20px;">
+        <a href="{% url 'track_order' %}">
+            <button type="button">Go to Orders</button>
+        </a>
+        <a href="{% url 'workers' %}">
+            <button type="button">Back to Workers</button>
+        </a>
+    </div>
+</body>
+</html>

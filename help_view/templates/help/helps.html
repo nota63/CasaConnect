@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - CasaConnect</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #2c3e50;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #34495e;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        .help-logo {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+        }
+        .username {
+            color: #27ae60; /* Dark Green Color */
+        }
+        form {
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #1abc9c;
+            color: #ffffff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background-color 0.2s ease-in-out;
+            display: block;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #16a085;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #1abc9c;
+            font-weight: 400;
+            font-size: 0.85rem;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccd1d9;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #1abc9c;
+            outline: none;
+            box-shadow: 0 0 4px rgba(26, 188, 156, 0.2);
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .container, h1, form, button, a {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Help Logo -->
+        <img src="https://th.bing.com/th/id/OIP.S3peUbHYbeCQ95lPfsDjygHaHa?w=1200&h=1200&rs=1&pid=ImgDetMain" alt="Help Logo" class="help-logo">
+
+        <!-- Heading -->
+        <h1>Hello <span class="username">{{ request.user }}</span>, how can we assist you today?</h1>
+
+        <!-- Form Section -->
+        <section>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <!-- Back Link -->
+        <a href="{% url 'home' %}">Back</a>
+    </div>
+
+</body>
+</html>

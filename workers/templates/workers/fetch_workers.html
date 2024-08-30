@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Premium Workers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header */
+        h1 {
+            font-size: 1.6rem;
+            margin: 20px 0;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Filter Form */
+        form {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        select {
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+
+        button[type="submit"] {
+            padding: 6px 12px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+            transform: scale(1.02);
+        }
+
+        /* Message Section */
+        section p {
+            background-color: #ffffff;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 0.9rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Worker Container */
+        .worker-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 10px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Worker Card */
+        .worker-card {
+            background-color: #ffffff;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .worker-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .worker-card img {
+            max-width: 60px;
+            max-height: 60px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+        }
+
+        .worker-card h3 {
+            font-size: 0.9rem;
+            margin: 6px 0;
+            color: #333;
+        }
+
+        .worker-card p {
+            font-size: 0.7rem;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        .worker-card a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .worker-card a:hover {
+            color: #45a049;
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .worker-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            form {
+                margin: 10px;
+            }
+
+            select {
+                font-size: 0.7rem;
+            }
+
+            button[type="submit"] {
+                font-size: 0.7rem;
+            }
+
+            .worker-card img {
+                max-width: 50px;
+                max-height: 50px;
+            }
+
+            .worker-card h3 {
+                font-size: 0.8rem;
+            }
+
+            .worker-card p {
+                font-size: 0.6rem;
+            }
+        }
+
+
+    :root {
+    --highlight-bg-color: #f0f8ff; /* Light background color */
+    --highlight-text-color: #333; /* Darker text for readability */
+    --border-radius: 6px;
+    --box-shadow: rgba(0, 0, 0, 0.1);
+    --font-family: 'Poppins', sans-serif;
+    --font-size: 14px; /* Light, compact font size */
+    --padding: 8px 12px;
+}
+
+.discount-highlight {
+    font-family: var(--font-family);
+    background-color: var(--highlight-bg-color);
+    color: var(--highlight-text-color);
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+    box-shadow: 0px 2px 4px var(--box-shadow);
+    font-weight: 300; /* Semi-bold to ensure readability */
+    text-align: center;
+    display: inline-block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 10px;
+}
+
+.discount-highlight:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 8px var(--box-shadow);
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <h1>Our Premium Workers</h1>
+
+    <section>
+        {% if messages %}
+            {% for m in messages %}
+                <p>{{ m }}</p>
+            {% endfor %}
+        {% endif %}
+    </section>
+
+    <form method="get">
+        <select name="profession">
+            <option value="">Select a Profession</option>
+            <option value="Electrician">Electrician</option>
+            <option value="Plumber">Plumber</option>
+            <option value="Carpenter">Carpenter</option>
+            <option value="Handyman">Handyman</option>
+            <option value="HVAC Technician">HVAC Technician</option>
+            <option value="Painter">Painter</option>
+            <option value="Appliance Repair Technician">Appliance Repair Technician</option>
+            <option value="General Contractor">General Contractor</option>
+            <option value="Gardener">Gardener</option>
+            <option value="Landscaper">Landscaper</option>
+            <option value="Tree Surgeon">Tree Surgeon</option>
+            <option value="Pest Control Specialist">Pest Control Specialist</option>
+            <option value="Pool Maintenance Technician">Pool Maintenance Technician</option>
+            <option value="Window Cleaner">Window Cleaner</option>
+            <option value="Pressure Washer Technician">Pressure Washer Technician</option>
+            <option value="House Cleaner">House Cleaner</option>
+            <option value="Carpet Cleaner">Carpet Cleaner</option>
+            <option value="Chimney Sweep">Chimney Sweep</option>
+            <option value="Gutter Cleaner">Gutter Cleaner</option>
+            <option value="Home Security Installer">Home Security Installer</option>
+            <option value="Locksmith">Locksmith</option>
+            <option value="Fire Safety Technician">Fire Safety Technician</option>
+            <option value="Interior Designer">Interior Designer</option>
+            <option value="Professional Organizer">Professional Organizer</option>
+            <option value="Home Stager">Home Stager</option>
+            <option value="Smart Home Installer">Smart Home Installer</option>
+            <option value="Roofer">Roofer</option>
+            <option value="Tiler">Tiler</option>
+            <option value="Flooring Installer">Flooring Installer</option>
+            <option value="Drywall Installer">Drywall Installer</option>
+            <option value="Plasterer">Plasterer</option>
+            <option value="Mason">Mason</option>
+            <option value="Welder">Welder</option>
+            <option value="Fence Installer">Fence Installer</option>
+            <option value="Solar Panel Installer">Solar Panel Installer</option>
+            <option value="Garage Door Technician">Garage Door Technician</option>
+            <option value="Customer Service Representative">Customer Service Representative</option>
+            <option value="Scheduler">Scheduler</option>
+            <option value="Quality Control Inspector">Quality Control Inspector</option>
+            <option value="Office Manager">Office Manager</option>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+
+    <div class="worker-container">
+        {% for worker in data %}
+            <div class="worker-card">
+                <strong class="discount-highlight">{{worker.discount}}</strong>
+                <br>
+                <img src="{{ worker.profile_pic.url }}" alt="{{ worker.name }}">
+                <h3>{{ worker.name }}</h3>
+                <p>{{ worker.role.role }}</p>
+                <a href="{% url 'worker_detail' worker.id %}">
+                    <p>View pricing</p>
+                </a>
+            </div>
+        {% empty %}
+            <p>No workers found!</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
